@@ -12,15 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-workspace(name = "pumpkin")
+licenses(["notice"])  # Apache v2.0
 
-android_sdk_repository(
-    name = "android_sdk",
+package(default_visibility = ["//visibility:private"])
+
+android_library(
+    name = "constraint",
+    visibility = ["//visibility:public"],
+    exports = [
+        ":layout",
+        ":layout_solver",
+    ],
 )
 
-load(
-    "//bazel:android.bzl",
-    "android_example_repositories",
+android_library(
+    name = "layout",
+    exports = ["@com_android_support_constraint_constraint_layout//aar"],
 )
 
-android_example_repositories()
+android_library(
+    name = "layout_solver",
+    exports = ["@com_android_support_constraint_constraint_layout_solver//jar"],
+)

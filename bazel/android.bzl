@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-workspace(name = "pumpkin")
-
-android_sdk_repository(
-    name = "android_sdk",
-)
-
+load("//tools/build_defs/repo:maven.bzl", "MAVEN_SERVERS")
 load(
-    "//bazel:android.bzl",
-    "android_example_repositories",
+    "//third_party/maven/android/support/constraint:constraint.bzl",
+    "load_com_android_support_constraint_constraint_layout",
+    "load_com_android_support_constraint_constraint_layout_solver",
 )
 
-android_example_repositories()
+def android_example_repositories(
+        server_urls = MAVEN_SERVERS,
+        fetch_sources = False):
+    load_com_android_support_constraint_constraint_layout(server_urls)
+    load_com_android_support_constraint_constraint_layout_solver(server_urls)
