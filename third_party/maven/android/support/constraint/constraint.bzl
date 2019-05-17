@@ -21,13 +21,13 @@ load(
 CONSTRAINT_LAYOUT = {
     "name": "com_android_support_constraint_constraint_layout",
     "artifact": "com.android.support.constraint:constraint-layout:1.1.3",
-    "sha256": "",
+    "sha256": "27b4e5c0b80d3ff8b92f4c93b3b4d3ecf16c01589f4cdf70ca7cf64cb42d8122",
 }
 
 CONSTRAINT_LAYOUT_SOLVER = {
     "name": "com_android_support_constraint_constraint_layout_solver",
     "artifact": "com.android.support.constraint:constraint-layout-solver:1.1.3",
-    "sha256": "",
+    "sha256": "2cafbe356f71c208013d021f32943904798cd6459e5107f9fe27000eb5bc2aef",
 }
 
 def load_com_android_support_constraint_constraint_layout(server_urls):
