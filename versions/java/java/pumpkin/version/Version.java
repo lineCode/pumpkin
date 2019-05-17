@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package pumpkin.core;
+package pumpkin.version;
 
-import pumpkin.version.Version;
+public final class Version {
 
-public final class PumpkinSDK {
+  private Version() {
+    throw new AssertionError("No constructor");
+  }
 
   public static String version() {
-    return Version.version();
+    return GenVersion.VERSION;
   }
 }

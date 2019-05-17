@@ -33,4 +33,7 @@ android_library(
     srcs = glob(["java/pumpkin/core/**/*.java"]),
     custom_package = "pumpkin.core",
     manifest = ":gen_android_core_sdk_manifest",
+    deps = [
+        "//versions/java",
+    ],
 )
