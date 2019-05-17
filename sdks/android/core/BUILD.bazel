@@ -12,8 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-workspace(name = "pumpkin")
+licenses(["notice"])  # Apache v2.0
 
-android_sdk_repository(
-    name = "android_sdk",
+package(default_visibility = ["//visibility:public"])
+
+genrule(
+    name = "gen_android_core_sdk_manifest",
+    outs = ["AndroidManifest.xml"],
+    cmd = """ echo "\\
+<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<manifest xmlns:android=\\"http://schemas.android.com/apk/res/android\\"
+    package=\\"pumpkin.core\\">
+</manifest>
+"> $@""",
+)
+
+android_library(
+    name = "core",
+    srcs = glob(["java/pumpkin/core/**/*.java"]),
+    custom_package = "pumpkin.core",
+    manifest = ":gen_android_core_sdk_manifest",
 )

@@ -24,3 +24,6 @@ directories:
 
 targets:
   //...
+
+additional_languages:
+  android
