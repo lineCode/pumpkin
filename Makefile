@@ -12,28 +12,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# http://editorconfig.org
-root = true
+# Bazel command wrapper
+BAZEL := "tools/bazel"
 
-[*]
-indent_style = space
-indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+PLAT ?= linux
+PLATS ?= linux osx
+SLIENT ?= @
 
-# Markdown
-[*.md]
-trim_trailing_whitespace = false
+#ifneq ($(PLAT), none)
 
-# Bazel Skylark
-[{BUILD,WORKSPACE}]
-indent_size = 4
+.PHONY: default
 
-[*.{bzl,bazel,BUILD}]
-indent_size = 4
+default:
+	$(SLIENT) $(MAKE) $(PLAT)
 
-# Makefile
-[Makefile]
-indent_style = tab
+#endif
+
+none:
+	$(SLIENT) echo "Please do 'make PLATFORM' where PLATFORM in one of these:"
+	$(SLIENT) echo "	$(PLATS)"
+
+$(BAZEL):
+	$(SLIENT) chmod a+x $(BAZEL)
+
+linux osx: $(BAZEL)
+	$(SLIENT) $(BAZEL) build //...
+
+
+clean: $(BAZEL)
+	$(SLIENT) $(BAZEL) clean
+
+cleanall: clean
+	$(SLIENT) $(BAZEL) clean --expunge
+	$(SLIENT) rm -rf bazel-*
+	$(SLIENT) rm -rf .ijwb
+
+
