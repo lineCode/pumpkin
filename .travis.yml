@@ -1,0 +1,11 @@
+dist: trusty
+sudo: required
+osx_image: xcode8
+language: java
+
+os:
+  - linux
+  - osx
+
+script:
+  - make "$TRAVIS_OS_NAME"
