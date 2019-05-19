@@ -7,5 +7,12 @@ os:
   - linux
   - osx
 
+install:
+  - |
+    set -e
+    chmod a+x tools/get_android_sdk
+    ./tools/get_android_sdk
+    export ANDROID_HOME=$HOME/android_sdk/
+
 script:
   - make "$TRAVIS_OS_NAME"
