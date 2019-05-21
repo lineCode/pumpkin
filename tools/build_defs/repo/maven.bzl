@@ -28,10 +28,10 @@ def maven_jar_import(artifact_dict, server_urls = MAVEN_SERVERS, fetch_sources =
         jvm_maven_import_external,
         name = artifact_dict["name"],
         artifact = artifact_dict["artifact"],
-        artifact_sha256 = artifact_dict["sha256"],
+        artifact_sha256 = artifact_dict.get("sha256"),
         server_urls = server_urls,
         fetch_sources = fetch_sources,
-        licenses = ["notice"],
+        licenses = artifact_dict.get("licenses", default = ["notice"]),
     )
 
 def maven_aar_import(artifact_dict, server_urls, **kwargs):
@@ -39,8 +39,8 @@ def maven_aar_import(artifact_dict, server_urls, **kwargs):
         aar_maven_import_external,
         name = artifact_dict["name"],
         artifact = artifact_dict["artifact"],
-        aar_sha256 = artifact_dict["sha256"],
+        aar_sha256 = artifact_dict.get("sha256"),
         server_urls = server_urls,
-        licenses = ["notice"],
+        licenses = artifact_dict.get("licenses", default = ["notice"]),
         **kwargs
     )
