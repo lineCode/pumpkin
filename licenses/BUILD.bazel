@@ -14,8 +14,15 @@
 
 licenses(["notice"])  # Apache v2.0
 
-exports_files([
-    "VERSION",
-    "LICENSE",
-    "NOTICE",
-])
+package(default_visibility = ["//visibility:public"])
+
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+pkg_tar(
+    name = "licenses",
+    srcs = [
+        "//:LICENSE",
+        "//:NOTICE",
+    ],
+    extension = "tar.gz",
+)
