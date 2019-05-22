@@ -19,6 +19,8 @@ PLAT ?= linux
 PLATS ?= linux osx
 SLIENT ?= @
 
+.PHONY: $(PLATS) $(BAZEL) clean cleanall none
+
 #ifneq ($(PLAT), none)
 
 .PHONY: default
